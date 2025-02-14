@@ -1,0 +1,179 @@
+/* Importar la fuente romántica */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap');
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Dancing Script", cursive;
+}
+
+/* Estilos generales */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #ffdde1, #ee9ca7);
+    
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Corazones flotantes */
+@keyframes corazones {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+.heart {
+    position: absolute;
+    color: rgba(255, 0, 102, 0.7);
+    font-size: 20px;
+    animation: corazones 5s infinite linear;
+}
+
+.heart:nth-child(1) { left: 10%; animation-duration: 4s; }
+.heart:nth-child(2) { left: 25%; animation-duration: 6s; font-size: 24px; }
+.heart:nth-child(3) { left: 50%; animation-duration: 5s; font-size: 18px; }
+.heart:nth-child(4) { left: 70%; animation-duration: 7s; font-size: 22px; }
+.heart:nth-child(5) { left: 90%; animation-duration: 6s; font-size: 26px; }
+
+/* Encabezado con brillo */
+#encabezado-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+#brillo {
+    font-size: 60px;
+    font-weight: bold;
+    color: rgba(255, 0, 102, 0.6);
+    background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+    -webkit-background-size: 150px;
+    -webkit-background-clip: text;
+    -webkit-animation: brillo 3s infinite;
+    text-shadow: 0 0px 10px rgba(233, 85, 189, 0.5);
+}
+
+@keyframes brillo {
+    0%, 10% { background-position: -1000px; }
+    20% { background-position: top left; }
+    90% { background-position: top right; }
+    100% { background-position: 1000px; }
+}
+
+/* Contenedor para centrar el texto y la galería */
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 80%;
+}
+
+/* Estilo para los textos */
+h2, h3 {
+    color: #d63384;
+    margin: 20px 0;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    max-width: 600px;
+    animation: latido 2s infinite ease-in-out;
+}
+
+p {
+    color: #d63384;
+    margin: 20px 0;
+    font-size: 2.8rem;
+    line-height: 1.5;
+    max-width: 600px;
+    animation: latido 2s infinite ease-in-out;
+}
+
+
+
+/* Efecto de latido en los textos */
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Efecto apilado de galería */
+.galeria {
+    --d: 10s;
+    display: grid;
+    place-items: center;
+    width: 250px;
+    margin: 30px 0;
+    position: relative;
+    animation: resplandor 2s infinite alternate ease-in-out;
+}
+
+/* Sutil resplandor para la galería */
+@keyframes resplandor {
+    0% { box-shadow: 0 0 10px rgba(255, 0, 76, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(255, 0, 76, 0.6); }
+}
+
+/* Estilo de las imágenes */
+.galeria > img {
+    grid-area: 1/1;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 12px solid #fff;
+    box-shadow: 0 4px 10px rgba(255, 0, 76, 0.4);
+    border-radius: 15px;
+    animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.galeria img:last-child {
+    animation-name: slide, z-order-last;
+}
+
+.galeria > img:nth-child(1) { animation-delay: calc(0 * var(--d)); --r: 16deg; }
+.galeria > img:nth-child(2) { animation-delay: calc(-0.2 * var(--d)); --r: -1deg; }
+.galeria > img:nth-child(3) { animation-delay: calc(-0.4 * var(--d)); --r: -19deg; }
+.galeria > img:nth-child(4) { animation-delay: calc(-0.6 * var(--d)); --r: 6deg; }
+.galeria > img:nth-child(5) { animation-delay: calc(-0.8 * var(--d)); --r: -8deg; }
+
+@keyframes slide {
+    10% { transform: translateX(120%) rotate(var(--r)); }
+    0%, 100%, 20% { transform: translateX(0%) rotate(var(--r)); }
+}
+
+@keyframes z-order {
+    10%, 20% { z-index: 1; }
+    80% { z-index: 2; }
+}
+
+@keyframes z-order-last {
+    10%, 20% { z-index: 1; }
+    90% { z-index: 2; }
+}
+
+/* Ajuste responsive */
+@media only screen and (max-width: 600px) {
+    #brillo { font-size: 30px; }
+
+    .galeria {
+        width: 180px;
+    }
+
+    h2, h3 {
+        font-size: 1.4rem;
+    }
+}
